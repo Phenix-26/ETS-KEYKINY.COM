@@ -3,69 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Auto Services & Modifications</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            text-align: center;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: #0f172a;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .lang-btn {
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            border: 1px solid #007bff;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-        }
-        .lang-btn:hover {
-            background-color: #0056b3;
-        }
-        .content {
-            margin-top: 30px;
+
+        header {
+            background-color: #1e293b;
             padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #334155;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lang-switch button {
+            background: #334155;
+            color: #fff;
+            border: 1px solid #475569;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .lang-switch button:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #f1f5f9;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* Categories Navigation */
+        .categories-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .cat-btn {
+            background-color: #1e293b;
+            color: #cbd5e1;
+            border: 2px solid #334155;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cat-btn:hover, .cat-btn.active {
+            background-color: #0284c7;
+            color: #ffffff;
+            border-color: #38bdf8;
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Gallery Grid */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-card .info {
+            padding: 15px;
+        }
+
+        .gallery-card .info h3 {
+            font-size: 1.1rem;
+            color: #f8fafc;
+            margin-bottom: 6px;
+        }
+
+        .gallery-card .info p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        footer {
+            margin-top: auto;
+            background-color: #1e293b;
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            border-top: 1px solid #334155;
         }
     </style>
 </head>
 <body>
 
-    <div>
-        <button class="lang-btn" onclick="setLanguage('en')">English</button>
-        <button class="lang-btn" onclick="setLanguage('fr')">Français</button>
+    <header>
+        <div class="logo">Auto Workshop</div>
+        <div class="lang-switch">
+            <button onclick="setLanguage('en')">EN</button>
+            <button onclick="setLanguage('fr')">FR</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1 id="hero-title">Explore Our Services</h1>
+        <p id="hero-desc">Select a category below to check our latest work and products.</p>
+    </section>
+
+    <!-- Categories Filter Buttons -->
+    <div class="categories-nav">
+        <button class="cat-btn active" onclick="filterCategory('modifications', this)" id="cat-mod">Modifications</button>
+        <button class="cat-btn" onclick="filterCategory('paint', this)" id="cat-paint">Paint & Bodywork</button>
+        <button class="cat-btn" onclick="filterCategory('batteries', this)" id="cat-bat">Batteries</button>
     </div>
 
-    <!-- English Content -->
-    <div id="content-en" class="content">
-        <h1>Welcome to My Website!</h1>
-        <p>This website is successfully hosted for free via GitHub Pages.</p>
+    <!-- Gallery Container -->
+    <div class="gallery-container">
+        <div class="gallery-grid">
+
+            <!-- Category 1: Modifications -->
+            <div class="gallery-card cat-item modifications">
+                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600" alt="Modification 1">
+                <div class="info">
+                    <h3 class="item-mod-1-title">Body Kit & Tuning</h3>
+                    <p class="item-mod-1-desc">Custom body kits and performance upgrades.</p>
+                </div>
+            </div>
+            <div class="gallery-card cat-item modifications">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" alt="Modification 2">
+                <div class="info">
+                    <h3 class="item-mod-2-title">Custom Exhaust & Rims</h3>
+                    <p class="item-mod-2-desc">High performance wheels and sports exhaust.</p>
+                </div>
+            </div>
+
+            <!-- Category 2: Paint & Bodywork -->
+            <div class="gallery-card cat-item paint" style="display: none;">
+                <img src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600" alt="Painting 1">
+                <div class="info">
+                    <h3 class="item-paint-1-title">Full Body Painting</h3>
+                    <p class="item-paint-1-desc">Premium quality paint with clear coat protection.</p>
+                </div>
+            </div>
+            <div class="gallery-card cat-item paint" style="display: none;">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600" alt="Painting 2">
+                <div class="info">
+                    <h3 class="item-paint-2-title">Custom Color Finish</h3>
+                    <p class="item-paint-2-desc">Matte, glossy, and custom color transformations.</p>
+                </div>
+            </div>
+
+            <!-- Category 3: Batteries -->
+            <div class="gallery-card cat-item batteries" style="display: none;">
+                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600" alt="Battery 1">
+                <div class="info">
+                    <h3 class="item-bat-1-title">Heavy Duty Batteries</h3>
+                    <p class="item-bat-1-desc">Long-lasting batteries with full warranty.</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <!-- French Content -->
-    <div id="content-fr" class="content" style="display: none;">
-        <h1>Bienvenue sur mon site Web !</h1>
-        <p>Ce site Web est hébergé gratuitement via GitHub Pages.</p>
-    </div>
+    <footer>
+        <p>&copy; 2026 Auto Workshop. All rights reserved.</p>
+    </footer>
 
     <script>
+        // Language Data
+        const translations = {
+            en: {
+                "hero-title": "Explore Our Services",
+                "hero-desc": "Select a category below to check our latest work and products.",
+                "cat-mod": "Modifications",
+                "cat-paint": "Paint & Bodywork",
+                "cat-bat": "Batteries",
+                "item-mod-1-title": "Body Kit & Tuning",
+                "item-mod-1-desc": "Custom body kits and performance upgrades.",
+                "item-mod-2-title": "Custom Exhaust & Rims",
+                "item-mod-2-desc": "High performance wheels and sports exhaust.",
+                "item-paint-1-title": "Full Body Painting",
+                "item-paint-1-desc": "Premium quality paint with clear coat protection.",
+                "item-paint-2-title": "Custom Color Finish",
+                "item-paint-2-desc": "Matte, glossy, and custom color transformations.",
+                "item-bat-1-title": "Heavy Duty Batteries",
+                "item-bat-1-desc": "Long-lasting batteries with full warranty."
+            },
+            fr: {
+                "hero-title": "Découvrez Nos Services",
+                "hero-desc": "Sélectionnez une catégorie ci-dessous pour voir nos réalisations.",
+                "cat-mod": "Modifications",
+                "cat-paint": "Peinture & Carrosserie",
+                "cat-bat": "Batteries",
+                "item-mod-1-title": "Kits Carrosserie & Tuning",
+                "item-mod-1-desc": "Personnalisation complète et amélioration des performances.",
+                "item-mod-2-title": "Échappement & Jantes",
+                "item-mod-2-desc": "Jantes haute performance et échappement sport.",
+                "item-paint-1-title": "Peinture Complète",
+                "item-paint-1-desc": "Peinture de haute qualité avec protection vernis.",
+                "item-paint-2-title": "Finition Personnalisée",
+                "item-paint-2-desc": "Transformations de couleurs mates, brillantes et sur mesure.",
+                "item-bat-1-title": "Batteries Haute Performance",
+                "item-bat-1-desc": "Batteries durables avec garantie complète."
+            }
+        };
+
+        let currentLang = 'en';
+
         function setLanguage(lang) {
-            if (lang === 'en') {
-                document.getElementById('content-en').style.display = 'block';
-                document.getElementById('content-fr').style.display = 'none';
-                document.documentElement.lang = 'en';
-            } else if (lang === 'fr') {
-                document.getElementById('content-en').style.display = 'none';
-                document.getElementById('content-fr').style.display = 'block';
-                document.documentElement.lang = 'fr';
+            currentLang = lang;
+            const data = translations[lang];
+            for (let key in data) {
+                const el = document.getElementById(key) || document.querySelector('.' + key);
+                if (el) el.innerText = data[key];
             }
         }
-    </script>
 
+        function filterCategory(category, btn) {
+            // Update Active Button
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Filter Items
+            document.querySelectorAll('.cat-item').forEach(item => {
+                if (item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
