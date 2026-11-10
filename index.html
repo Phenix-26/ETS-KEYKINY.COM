@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .lang-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #007bff;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .lang-btn:hover {
+            background-color: #0056b3;
+        }
+        .content {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <button class="lang-btn" onclick="setLanguage('en')">English</button>
+        <button class="lang-btn" onclick="setLanguage('fr')">Français</button>
+    </div>
+
+    <!-- English Content -->
+    <div id="content-en" class="content">
+        <h1>Welcome to My Website!</h1>
+        <p>This website is successfully hosted for free via GitHub Pages.</p>
+    </div>
+
+    <!-- French Content -->
+    <div id="content-fr" class="content" style="display: none;">
+        <h1>Bienvenue sur mon site Web !</h1>
+        <p>Ce site Web est hébergé gratuitement via GitHub Pages.</p>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            if (lang === 'en') {
+                document.getElementById('content-en').style.display = 'block';
+                document.getElementById('content-fr').style.display = 'none';
+                document.documentElement.lang = 'en';
+            } else if (lang === 'fr') {
+                document.getElementById('content-en').style.display = 'none';
+                document.getElementById('content-fr').style.display = 'block';
+                document.documentElement.lang = 'fr';
+            }
+        }
+    </script>
+
+</body>
+</html>
