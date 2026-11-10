@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Services & Modifications</title>
+    <title>ETS-KEYKINY - Services & Modifications</title>
     <style>
         * {
             box-sizing: border-box;
@@ -22,26 +22,34 @@
 
         header {
             background-color: #1e293b;
-            padding: 20px;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #334155;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
             color: #38bdf8;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .lang-switch button {
             background: #334155;
             color: #fff;
             border: 1px solid #475569;
-            padding: 8px 14px;
+            padding: 6px 12px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
@@ -53,9 +61,40 @@
             color: #0f172a;
         }
 
+        /* Social Media Buttons */
+        .social-links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .social-whatsapp { background-color: #25D366; }
+        .social-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .social-tiktok { background-color: #000000; border: 1px solid #334155; }
+
         .hero {
             text-align: center;
-            padding: 40px 20px 20px 20px;
+            padding: 30px 20px 10px 20px;
         }
 
         .hero h1 {
@@ -73,7 +112,7 @@
         .categories-nav {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
             padding: 20px;
         }
@@ -82,9 +121,9 @@
             background-color: #1e293b;
             color: #cbd5e1;
             border: 2px solid #334155;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 30px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -150,25 +189,33 @@
             margin-top: auto;
             background-color: #1e293b;
             text-align: center;
-            padding: 20px;
+            padding: 25px 20px;
             color: #64748b;
             border-top: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Auto Workshop</div>
-        <div class="lang-switch">
-            <button onclick="setLanguage('en')">EN</button>
-            <button onclick="setLanguage('fr')">FR</button>
+        <!-- اسم الشركة في رأس الصفحة -->
+        <div class="logo">ATSK Kini</div>
+        
+        <div class="header-actions">
+            <div class="lang-switch">
+                <button onclick="setLanguage('en')">EN</button>
+                <button onclick="setLanguage('fr')">FR</button>
+            </div>
         </div>
     </header>
 
     <section class="hero">
-        <h1 id="hero-title">Explore Our Services</h1>
-        <p id="hero-desc">Select a category below to check our latest work and products.</p>
+        <h1 id="hero-title">Explore Our Garage Services</h1>
+        <p id="hero-desc">Select a category below to view our portfolio and products.</p>
     </section>
 
     <!-- Categories Filter Buttons -->
@@ -186,15 +233,15 @@
             <div class="gallery-card cat-item modifications">
                 <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600" alt="Modification 1">
                 <div class="info">
-                    <h3 class="item-mod-1-title">Body Kit & Tuning</h3>
-                    <p class="item-mod-1-desc">Custom body kits and performance upgrades.</p>
+                    <h3 id="item-mod-1-title">Body Kit & Tuning</h3>
+                    <p id="item-mod-1-desc">Custom body kits and performance upgrades.</p>
                 </div>
             </div>
             <div class="gallery-card cat-item modifications">
                 <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" alt="Modification 2">
                 <div class="info">
-                    <h3 class="item-mod-2-title">Custom Exhaust & Rims</h3>
-                    <p class="item-mod-2-desc">High performance wheels and sports exhaust.</p>
+                    <h3 id="item-mod-2-title">Custom Exhaust & Rims</h3>
+                    <p id="item-mod-2-desc">High performance wheels and sports exhaust.</p>
                 </div>
             </div>
 
@@ -202,15 +249,15 @@
             <div class="gallery-card cat-item paint" style="display: none;">
                 <img src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600" alt="Painting 1">
                 <div class="info">
-                    <h3 class="item-paint-1-title">Full Body Painting</h3>
-                    <p class="item-paint-1-desc">Premium quality paint with clear coat protection.</p>
+                    <h3 id="item-paint-1-title">Full Body Painting</h3>
+                    <p id="item-paint-1-desc">Premium quality paint with clear coat protection.</p>
                 </div>
             </div>
             <div class="gallery-card cat-item paint" style="display: none;">
                 <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600" alt="Painting 2">
                 <div class="info">
-                    <h3 class="item-paint-2-title">Custom Color Finish</h3>
-                    <p class="item-paint-2-desc">Matte, glossy, and custom color transformations.</p>
+                    <h3 id="item-paint-2-title">Custom Color Finish</h3>
+                    <p id="item-paint-2-desc">Matte, glossy, and custom color transformations.</p>
                 </div>
             </div>
 
@@ -218,8 +265,8 @@
             <div class="gallery-card cat-item batteries" style="display: none;">
                 <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600" alt="Battery 1">
                 <div class="info">
-                    <h3 class="item-bat-1-title">Heavy Duty Batteries</h3>
-                    <p class="item-bat-1-desc">Long-lasting batteries with full warranty.</p>
+                    <h3 id="item-bat-1-title">Heavy Duty Batteries</h3>
+                    <p id="item-bat-1-desc">Long-lasting batteries with full warranty.</p>
                 </div>
             </div>
 
@@ -227,15 +274,23 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Auto Workshop. All rights reserved.</p>
+        <p style="color: #cbd5e1; font-weight: 500;">Contact Us Directly / Contactez-nous مباشرة:</p>
+        
+        <!-- Social Media & Contact Links -->
+        <div class="social-links">
+            <a href="https://wa.me/243000000000" target="_blank" class="social-btn social-whatsapp">💬 WhatsApp</a>
+            <a href="https://instagram.com/your_username" target="_blank" class="social-btn social-instagram">📸 Instagram</a>
+            <a href="https://tiktok.com/@your_username" target="_blank" class="social-btn social-tiktok">🎵 TikTok</a>
+        </div>
+
+        <p>&copy; 2026 ATSK Kini. All rights reserved.</p>
     </footer>
 
     <script>
-        // Language Data
         const translations = {
             en: {
-                "hero-title": "Explore Our Services",
-                "hero-desc": "Select a category below to check our latest work and products.",
+                "hero-title": "Explore Our Garage Services",
+                "hero-desc": "Select a category below to view our portfolio and products.",
                 "cat-mod": "Modifications",
                 "cat-paint": "Paint & Bodywork",
                 "cat-bat": "Batteries",
@@ -251,7 +306,7 @@
                 "item-bat-1-desc": "Long-lasting batteries with full warranty."
             },
             fr: {
-                "hero-title": "Découvrez Nos Services",
+                "hero-title": "Découvrez Nos Services de Garage",
                 "hero-desc": "Sélectionnez une catégorie ci-dessous pour voir nos réalisations.",
                 "cat-mod": "Modifications",
                 "cat-paint": "Peinture & Carrosserie",
@@ -269,23 +324,18 @@
             }
         };
 
-        let currentLang = 'en';
-
         function setLanguage(lang) {
-            currentLang = lang;
             const data = translations[lang];
             for (let key in data) {
-                const el = document.getElementById(key) || document.querySelector('.' + key);
+                const el = document.getElementById(key);
                 if (el) el.innerText = data[key];
             }
         }
 
         function filterCategory(category, btn) {
-            // Update Active Button
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Filter Items
             document.querySelectorAll('.cat-item').forEach(item => {
                 if (item.classList.contains(category)) {
                     item.style.display = 'block';
